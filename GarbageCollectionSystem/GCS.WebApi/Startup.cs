@@ -52,10 +52,13 @@ namespace GCS.WebApi
             services.AddScoped<IContainerService, ContainerService>();
             services.AddScoped<IRouteService, RouteService>();
 
-            services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg =>
+            /*services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MappingProfile>();
-            })));
+            })));*/
+            //services.AddAutoMapper(typeof(MappingProfile));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddAutoMapper(Assembly.GetExecutingAssembly());//Not working because Assembly.GetExecutingAssembly() is only going to return the main assembly.
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
